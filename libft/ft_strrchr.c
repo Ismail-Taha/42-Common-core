@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isallali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 21:06:36 by isallali          #+#    #+#             */
-/*   Updated: 2024/10/22 21:57:14 by isallali         ###   ########.fr       */
+/*   Created: 2024/10/23 12:25:49 by isallali          #+#    #+#             */
+/*   Updated: 2024/10/23 12:32:54 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, char *src, size_t size)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
-	size_t	k;
-	size_t	len1;
-	size_t	len2;
+	int	i;
 
-	len1 = 0;
-	len2 = 0;
-	k = 0;
-	while (dest[len1])
-		len1++;
-	while (src[len2])
-		len2++;
-	i = len1;
-	while (src[k] && i < (size -1) && size != 0)
+	i = ft_strlen(s);
+	if (c == 0)
+		return ((char *)s + 1);
+	while (i >= 0)
 	{
-		dest[i] = src[k];
-		i++;
-		k++;
+		if (s[i] == c)
+			return ((char *)s + 1);
+		i--;
 	}
-	dest[i] = '\0';
-	if (len1 > size)
-		return (size + len2);
-	return (len1 + len2);
+	return (NULL);
 }
