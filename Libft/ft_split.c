@@ -41,7 +41,6 @@ int w_count(char const *s, char c)
 		while (s[i] != '\0' && !check_delm(&s[i], c))
 			i++;
 	}
-	printf("%d\n", count);
 	return (count);
 }
 
