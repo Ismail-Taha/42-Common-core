@@ -30,6 +30,10 @@ ${NAME}: ${OBJS}
 
 all: ${NAME}
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+
 bonus: ${NAME} ${BONUS_OBJS}
 	${LIBC} ${NAME} ${BONUS_OBJS}
 

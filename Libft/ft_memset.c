@@ -22,7 +22,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-
+/**
 int main()
 {
 	int ptr[] = {1, 2, 3};
@@ -35,3 +35,4 @@ int main()
 	}
 
 }
+*/

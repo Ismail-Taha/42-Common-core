@@ -15,6 +15,6 @@
 size_t	ft_strlen(const char *s)
 {
 	while (*s != '\0')
-		return (1 + ft_strlen(str + 1));
+		return (1 + ft_strlen(s + 1));
 	return (0);
 }
