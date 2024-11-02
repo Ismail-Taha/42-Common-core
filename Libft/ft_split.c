@@ -73,6 +73,8 @@ char	 **ft_split(char const *s, char c)
 	int		i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	strs = malloc(sizeof(char *) * (w_count(s, c) + 1));
 	if(!strs)
 		return (NULL);
@@ -93,7 +95,7 @@ char	 **ft_split(char const *s, char c)
 	strs[i] = 0;
 	return (strs);
 }
-int main(int ac, char **av)
+/** int main(int ac, char **av)
 {
 	char **s = ft_split(av[1], '0');
 	int i = 0;
@@ -107,3 +109,4 @@ int main(int ac, char **av)
 	}
 
 }
+*/
