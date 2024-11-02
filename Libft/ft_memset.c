@@ -21,3 +21,17 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
+
+int main()
+{
+	int ptr[] = {1, 2, 3};
+	int i = 0;
+	int *ptr2 = (int *)ft_memset(ptr, 2, 4);
+	while (i < 3)
+	{
+		printf("%d\n", ptr[i]);
+		i++;
+	}
+
+}

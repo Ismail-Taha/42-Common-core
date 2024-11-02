@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int n_len(long n)
+static int n_len(long n)
 {
 	int i;
 
@@ -30,7 +30,7 @@ int n_len(long n)
 	return (i);
 }
 
-void fill_str(char *str, long nb, size_t i)
+static void fill_str(char *str, long nb, size_t i)
 {
 
 	if (nb == 0)
