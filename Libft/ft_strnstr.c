@@ -12,28 +12,21 @@
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
+char	*ft_strnstr(const char *str, const char *target, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	size_t	targ_len;
 
-	i = 0;
-	j = 0;
-	if (needle == NULL || needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] != '\0' && i < n)
+	targ_len = ft_strlen(target);
+	if (!str && n == 0)
+		return (NULL);
+	if (targ_len == 0)
+		return ((char *)str);
+	while (*str && n >= targ_len)
 	{
-		if (haystack[i] == needle[j])
-		{
-			while (haystack[i + j] == needle[j] && i + j < n)
-			{
-				if (needle[j + 1] == '\0')
-					return ((char *)haystack + i);
-				j++;
-			}
-			j = 0;
-		}
-		i++;
+		if (ft_strncmp(str, target, targ_len) == 0)
+			return ((char *)str);
+		str++;
+		n--;
 	}
 	return (NULL);
 }

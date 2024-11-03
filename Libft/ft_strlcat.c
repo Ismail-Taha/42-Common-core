@@ -22,6 +22,8 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 	len1 = 0;
 	len2 = 0;
 	k = 0;
+	if (!dest && !size)
+		return (ft_strlen(src));
 	while (dest[len1])
 		len1++;
 	while (src[len2])
@@ -34,7 +36,7 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 		k++;
 	}
 	dest[i] = '\0';
-	if (len1 > size)
+	if (len1 >= size)
 		return (size + len2);
 	return (len1 + len2);
 }

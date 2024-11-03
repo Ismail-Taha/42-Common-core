@@ -17,10 +17,12 @@ static int n_len(long n)
 	int i;
 
 	i = 0;
-	if (n < 0)
+	if (n <= 0)
 	{
-		n = -n;
 		i++;
+		if (n == 0)
+			return (1);
+		n = -n;
 	}
 	while (n > 0)
 	{
@@ -46,9 +48,9 @@ static void fill_str(char *str, long nb, size_t i)
 }
 char	*ft_itoa(int n)
 {
-	char *str;
-	int i;
-	long nb;
+	char	*str;
+	size_t	i;
+	long	nb;
 
 	nb = n;
 	i = n_len(nb);
