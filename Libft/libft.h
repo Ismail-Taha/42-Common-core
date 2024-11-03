@@ -16,6 +16,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#define MAX_SIZE 18446744073709551615UL
+
 typedef struct s_list
 {
 void *content;
