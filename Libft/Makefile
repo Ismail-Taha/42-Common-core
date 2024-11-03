@@ -16,7 +16,7 @@ OBJS		= ${SRCS:.c=.o}
 BONUS_OBJS	= ${BONUS_SRCS:.c=.o}
 NAME		= libft.a
 LIBC		= ar rc
-CC			= gcc
+CC			= cc
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 

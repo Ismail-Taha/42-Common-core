@@ -32,7 +32,7 @@ static int n_len(long n)
 
 static void fill_str(char *str, long nb, size_t i)
 {
-
+	str[i] = '\0';
 	if (nb == 0)
 	{
 		str[0] = '0';
@@ -40,7 +40,7 @@ static void fill_str(char *str, long nb, size_t i)
 	}
 	while (nb > 0)
 	{
-        str[i--] = '0' + (nb % 10);
+        str[--i] = '0' + (nb % 10);
         nb /= 10;
     }
 }
@@ -50,13 +50,11 @@ char	*ft_itoa(int n)
 	int i;
 	long nb;
 
-	i = 0;
 	nb = n;
-	str = malloc(sizeof(char) * (n_len(nb) + 1));
+	i = n_len(nb);
+	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
-	i = n_len(nb);
-	str[i--] = 0;
 	if (nb < 0)
 	{
 		str[0] = '-';
