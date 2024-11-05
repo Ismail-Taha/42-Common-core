@@ -6,13 +6,13 @@
 /*   By: isallali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:14:47 by isallali          #+#    #+#             */
-/*   Updated: 2024/10/25 14:27:23 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:49:53 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int w_count(char const *s, char c)
+static int	w_count(char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -31,7 +31,7 @@ static int w_count(char const *s, char c)
 	return (count);
 }
 
-static int ft_len(char const *s, char c)
+static int	ft_len(char const *s, char c)
 {
 	int	i;
 
@@ -40,6 +40,7 @@ static int ft_len(char const *s, char c)
 		i++;
 	return (i);
 }
+
 static char	*ft_dup(char const *s, char c)
 {
 	int		len_w;
@@ -59,6 +60,7 @@ static char	*ft_dup(char const *s, char c)
 	copy[i] = 0;
 	return (copy);
 }
+
 static char	**ft_free(char **strs, int count)
 {
 	while (count-- > 0)
@@ -67,7 +69,7 @@ static char	**ft_free(char **strs, int count)
 	return (NULL);
 }
 
-char	 **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**strs;
 	int		i;
@@ -76,7 +78,7 @@ char	 **ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (w_count(s, c) + 1));
-	if(!strs)
+	if (!strs)
 		return (NULL);
 	while (*s != 0)
 	{
