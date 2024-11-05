@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:00:40 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/04 20:00:40 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:54:45 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	end;
 	char	*str;
 
-	if (!s1 || !set)
+	if (!s1)
 		return (NULL);
+	if (!set)
+		return ((char *)s1);
 	start = 0;
 	end = ft_strlen(s1) - 1;
 	while (s1[start] && ft_trim(s1[start], set))
