@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:37:42 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/02 21:37:42 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:31:45 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
 
-	if (!lst)
+	if (!lst || !(*lst) || !del)
 		return ;
 	while (*lst)
 	{
