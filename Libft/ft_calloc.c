@@ -18,7 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*c;
 
 	len = count * size;
-	if (len > MAX_SIZE)
+	if (len > 18446744073709551615UL)
 		return (NULL);
 	if (count == 0 || size == 0)
 	{
