@@ -6,56 +6,32 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:27:47 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/05 14:12:40 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:33:17 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-static char	*ft_strcat(char *dest, const char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (dest[i])
-		i++;
-	while (src[j])
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (0);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (s1)
+		len1 = ft_strlen(s1);
+	else
+		len1 = 0;
+	if (s2)
+		len2 = ft_strlen(s2);
+	else
+		len2 = 0;
+	str = ft_calloc((len1 + len2 + 1), sizeof(char));
 	if (!str)
 		return (0);
-	ft_strcpy(str, s1);
-	ft_strcat(str, s2);
-	str[ft_strlen(str)] = 0;
+	ft_memcpy(str, s1, len1);
+	ft_memcpy(str + len1, s2, len2);
 	return (str);
 }
