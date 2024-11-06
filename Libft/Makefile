@@ -20,27 +20,25 @@ CC			= cc
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re bonus
+all: $(NAME)
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME): $(OBJS)
+    ar rc $(NAME) $(OBJS)
+    ranlib $(NAME)
 
-${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+bonus: $(BONUS_OBJS)
+    ar rc $(NAME) $(BONUS_OBJS)
+    ranlib $(NAME)
 
-all: ${NAME}
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
-
-bonus: ${NAME} ${BONUS_OBJS}
-	${LIBC} ${NAME} ${BONUS_OBJS}
+%.o: %.c
+    $(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS}
+    rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	${RM} ${NAME}
+    rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all bonus clean fclean re $(NAME)

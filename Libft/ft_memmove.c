@@ -38,3 +38,15 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
+
+/**#include <stdio.h>
+
+int main()
+{
+	int a = -1000;
+	int b;
+
+	ft_memmove(&b, &a, 4);
+	printf("%d", b);
+}
+*/

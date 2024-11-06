@@ -22,17 +22,16 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-/**
+/**#include <stdio.h>
 int main()
 {
-	int ptr[] = {1, 2, 3};
-	int i = 0;
-	int *ptr2 = (int *)ft_memset(ptr, 2, 4);
-	while (i < 3)
-	{
-		printf("%d\n", ptr[i]);
-		i++;
-	}
+	int a;
+	int b;
+
+	ft_memset(&a,232, 1);
+	ft_memset((void *)&a + 1, 3, 1);
+	ft_memset((void *)&a + 2, 0, 2);
+	printf("%d", a);
 
 }
 */

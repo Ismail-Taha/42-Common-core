@@ -17,14 +17,14 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	len;
 	void	*c;
 
-	len = count * size;
-	if (len > 18446744073709551615UL)
+	if (count != 0 && (18446744073709551615UL / count < size))
 		return (NULL);
 	if (count == 0 || size == 0)
 	{
 		count = 1;
 		size = 1;
 	}
+	len = count * size;
 	c = malloc(len);
 	if (c == NULL)
 		return (NULL);
