@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #include "get_next_line.h"
 
 // join and free
@@ -113,3 +114,17 @@ char	*get_next_line(int fd)
 	buffer = ft_next(buffer);
 	return (line);
 }
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/09 15:22:03 by isallali          #+#    #+#             */
+/*   Updated: 2024/11/11 16:59:56 by isallali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+>>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #include "get_next_line.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -75,3 +76,17 @@ size_t	ft_strlen(const char *theString)
 		i++;
 	return (i);
 }
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*    get_next_line_utils.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/09 15:21:55 by isallali          #+#    #+#             */
+/*   Updated: 2024/11/11 16:59:59 by isallali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+>>>>>>> Stashed changes
