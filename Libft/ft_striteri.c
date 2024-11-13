@@ -25,14 +25,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
-/**#include <stdio.h>
-void zbi(unsigned int i, char *c)
-{
-	*c = ft_toupper(*c);
-}
-int main()
-{
-	char str[] = "joeisvalidated";
-	ft_striteri(str, zbi);
-	printf("%s\n", str);
-}*/
