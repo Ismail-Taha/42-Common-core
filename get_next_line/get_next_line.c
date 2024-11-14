@@ -12,16 +12,16 @@
 
 #include "get_next_line.h"
 
-void	ft_free(char *readed)
+void	ft_free(char *rbuffer)
 {
-	if (!readed)
+	if (!rbuffer)
 		return ;
-	free(readed);
+	free(rbuffer);
 }
 
-char	*move_next_line(char *buffer)
+char	*next_line(char *buffer)
 {
-	char	*nbuffer;
+	char	*fbuffer;
 	int		j;
 	int		i;
 
@@ -32,14 +32,14 @@ char	*move_next_line(char *buffer)
 	if (!buffer[i])
 		return (free(buffer), NULL);
 	i++;
-	nbuffer = ft_calloc(ft_strlen(buffer) - i + 1, 1);
-	if (!nbuffer)
+	fbuffer = ft_calloc(ft_strlen(buffer) - i + 1, 1);
+	if (!fbuffer)
 		return (free(buffer), NULL);
 	while (buffer[i])
-		nbuffer[j++] = buffer[i++];
-	nbuffer[j] = '\0';
+		fbuffer[j++] = buffer[i++];
+	fbuffer[j] = '\0';
 	free(buffer);
-	return (nbuffer);
+	return (fbuffer);
 }
 
 char	*get_line(char *buffer)
@@ -70,7 +70,7 @@ char	*get_line(char *buffer)
 	return (line);
 }
 
-char	*read_file(int fd, char *readed)
+char	*ft_readf(int fd, char *nbuffer)
 {
 	char	*buffer;
 	int		r;
@@ -83,18 +83,18 @@ char	*read_file(int fd, char *readed)
 	{
 		r = read(fd, buffer, BUFFER_SIZE);
 		if (r < 0)
-			return (ft_free(buffer), ft_free(readed), NULL);
+			return (ft_free(buffer), ft_free(nbuffer), NULL);
 		if (!r)
 			break ;
 		buffer[r] = 0;
-		readed = ft_strjoin(readed, buffer);
-		if (!readed)
+		nbuffer = ft_strjoin(nbuffer, buffer);
+		if (!nbuffer)
 			return (ft_free(buffer), NULL);
-		if (ft_strchr(readed, '\n'))
+		if (ft_strchr(nbuffer, '\n'))
 			break ;
 	}
 	ft_free(buffer);
-	return (readed);
+	return (nbuffer);
 }
 
 char	*get_next_line(int fd)
@@ -104,10 +104,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 2147483647)
 		return (NULL);
-	buffer = read_file(fd, buffer);
+	buffer = ft_readf(fd, buffer);
 	if (!buffer)
 		return (NULL);
 	line = get_line(buffer);
-	buffer = move_next_line(buffer);
+	buffer = next_line(buffer);
 	return (line);
 }

@@ -31,15 +31,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str[i] = 0;
 	return (str);
 }
-
-/**char tot(unsigned int i, char c)
-{
-		return (ft_toupper(c));
-}
-#include <stdio.h>
-int main()
-{
-	const char str[] = "joeisvalidated";
-
-	printf("%s\n", ft_strmapi(str, tot));
-}*/

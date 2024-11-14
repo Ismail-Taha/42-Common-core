@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:38:00 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/06 00:23:31 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/06 18:18:50 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,42 +38,3 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
-
-/**void deleg(void *content)
-{
-	free(content);
-}
-void *increment(void *content)
-{
-    int *val = (int *)content;
-    *val = *val + 1;
-    return val;
-}
-#include <stdio.h>
-int main ()
-{
-	int *val1 = malloc(sizeof(int));
-    *val1 = 5;
-    t_list *node1 = ft_lstnew(val1);
-
-	int *val2 = malloc(sizeof(int));
-	*val2 = 10;
-	t_list *node2 = ft_lstnew(val2);
-	ft_lstadd_back(&node1, node2);
-
-	int *val3 = malloc(sizeof(int));
-	*val3 = 14;
-	t_list *node3 = ft_lstnew(val3);
-	ft_lstadd_back(&node1, node3);
-
-	ft_lstmap(node1, increment, deleg);
-
-	while (node1 != NULL)
-    {
-        printf("%d -> ", *((int *)node1->content));
-        node1 = node1->next;
-    }
-    printf("NULL\n");
-
-	return 0;
-}*/

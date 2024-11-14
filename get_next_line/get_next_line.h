@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 12:15:30 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/14 14:01:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:16:11 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
+#endif
 
 int		ft_strchr(char *s, char c);
 size_t	ft_strlen(char *s);
