@@ -12,79 +12,85 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strchr(const char *s, int i)
 {
-	int		sizetotal;
-	char	*res;
-	int		i;
-	int		j;
+	char	c;
 
-	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s1 || !s2)
-		return (NULL);
-	while (s1[i] != 0)
+	c = (char)i;
+	while (*s)
 	{
-		res[i] = s1[i];
-		i++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	j = 0;
-	while (s2[j] != 0)
-	{
-		res[i] = s2[j];
-		i++;
-		j++;
-	}
-	res[sizetotal] = 0;
-	return (res);
+	if (c == '\0')
+		return ((char *)s);
+	return (0);
 }
 
-char	*ft_strchr(const char *string, int searchedChar )
+size_t	ft_strlen(const char *s)
 {
-	char	*str;
-
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
-		str++;
-	if (*str == searchedChar)
-		return (str);
-	else
-		return (NULL);
+	while (*s != '\0')
+		return (1 + ft_strlen(s + 1));
+	return (0);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*str;
+	char	*alloc;
 	size_t	i;
 
-	str = (char *)s;
+	i = 0;
+	if (!count || !size)
+		return (NULL);
+	if (size != 0 && size > (SIZE_MAX / count))
+		return (NULL);
+	alloc = malloc(count * size);
+	if (!alloc)
+		return (NULL);
+	return (alloc);
+}
+
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+	char	*dest;
+	char	*ssrc;
+
+	if (!dst && !src)
+		return (dst);
+	dest = (char *)dst;
+	ssrc = (char *)src;
 	i = 0;
 	while (i < n)
 	{
-		str[i] = '\0';
+		dest[i] = ssrc[i];
 		i++;
 	}
+	return (dst);
 }
 
-void	*ft_calloc(size_t elementCount, size_t elementSize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
+	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-	res = malloc(elementSize * elementCount);
-	if (!res)
-		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
-	return (res);
+	if (!s1 && !s2)
+		return (0);
+	if (s1)
+		len1 = ft_strlen(s1);
+	else
+		len1 = 0;
+	if (s2)
+		len2 = ft_strlen(s2);
+	else
+		len2 = 0;
+	str = ft_calloc((len1 + len2 + 1), sizeof(char));
+	if (!str)
+		return (0);
+	ft_memcpy(str, s1, len1);
+	ft_memcpy(str + len1, s2, len2);
+	return (str);
 }
-
-size_t	ft_strlen(const char *theString)
-{
-	int	i;
-
-	i = 0;
-	while (theString[i])
-		i++;
-	return (i);
-}
-
