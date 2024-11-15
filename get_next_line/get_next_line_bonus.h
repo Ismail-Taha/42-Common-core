@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:29 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 12:33:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:42:08 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
 
-#endif
+#endif /*GET_NEXT_LINE_BONUS_H*/
