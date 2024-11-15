@@ -10,24 +10,18 @@ int main(int argc, char **argv)
         printf("Usage: %s <file>\n", argv[0]);
         return (1);
     }
-
-    // Open the file
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
         perror("Error opening file");
         return (1);
     }
-
-    // Read lines using get_next_line
     printf("Reading file: %s\n", argv[1]);
     while ((line = get_next_line(fd)) != NULL)
     {
         printf("%s", line);
-        free(line); // Free the line after processing
+        free(line);
     }
-
-    // Close the file descriptor
     close(fd);
     return (0);
 }

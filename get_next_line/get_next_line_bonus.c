@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:17 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 15:17:29 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:05:00 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,27 @@ void	ft_free(char *rbuffer)
 		return ;
 	free(rbuffer);
 }
-
-char	*ft_readf(int fd, char *nbuffer)
+char	*next_line(char *buffer)
 {
-	char	*buffer;
-	int		r;
+	char	*fbuffer;
+	int		j;
+	int		i;
 
-	r = 1;
-	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
-	if (!buffer)
-		return (NULL);
-	while (1)
-	{
-		r = read(fd, buffer, BUFFER_SIZE);
-		if (r < 0)
-			return (ft_free(buffer), ft_free(nbuffer), NULL);
-		if (!r)
-			break ;
-		buffer[r] = 0;
-		nbuffer = ft_strjoin(nbuffer, buffer);
-		if (!nbuffer)
-			return (ft_free(buffer), NULL);
-		if (ft_strchr(nbuffer, '\n'))
-			break ;
-	}
-	ft_free(buffer);
-	return (nbuffer);
+	i = 0;
+	j = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
+		return (free(buffer), NULL);
+	i++;
+	fbuffer = ft_calloc(ft_strlen(buffer) - i + 1, 1);
+	if (!fbuffer)
+		return (free(buffer), NULL);
+	while (buffer[i])
+		fbuffer[j++] = buffer[i++];
+	fbuffer[j] = '\0';
+	free(buffer);
+	return (fbuffer);
 }
 
 char	*get_line(char *buffer)
@@ -74,27 +69,31 @@ char	*get_line(char *buffer)
 	return (line);
 }
 
-char	*next_line(char *buffer)
+char	*ft_readf(int fd, char *nbuffer)
 {
-	char	*fbuffer;
-	int		j;
-	int		i;
+	char	*buffer;
+	int		r;
 
-	i = 0;
-	j = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (!buffer[i])
-		return (free(buffer), NULL);
-	i++;
-	fbuffer = ft_calloc(ft_strlen(buffer) - i + 1, 1);
-	if (!fbuffer)
-		return (free(buffer), NULL);
-	while (buffer[i])
-		fbuffer[j++] = buffer[i++];
-	fbuffer[j] = '\0';
-	free(buffer);
-	return (fbuffer);
+	r = 1;
+	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
+	if (!buffer)
+		return (NULL);
+	while (1)
+	{
+		r = read(fd, buffer, BUFFER_SIZE);
+		if (r < 0)
+			return (ft_free(buffer), ft_free(nbuffer), NULL);
+		if (!r)
+			break ;
+		buffer[r] = 0;
+		nbuffer = ft_strjoin(nbuffer, buffer);
+		if (!nbuffer)
+			return (ft_free(buffer), NULL);
+		if (ft_strchr(nbuffer, '\n'))
+			break ;
+	}
+	ft_free(buffer);
+	return (nbuffer);
 }
 
 char	*get_next_line(int fd)
