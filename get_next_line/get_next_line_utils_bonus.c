@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:36 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 16:20:36 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:50:34 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ size_t	ft_strlen(char *s)
 void	*ft_calloc(size_t count, size_t size)
 {
 	char	*alloc;
-	size_t	i;
 
-	i = 0;
 	if (!count || !size)
 		return (NULL);
 	if (size != 0 && size > (SIZE_MAX / count))

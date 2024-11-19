@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:29 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 18:09:04 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:45:03 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+#include <fcntl.h>
+#include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
