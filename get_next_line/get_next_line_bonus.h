@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:29 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 14:42:08 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:09:04 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE

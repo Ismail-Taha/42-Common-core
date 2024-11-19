@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:51:17 by isallali          #+#    #+#             */
-/*   Updated: 2024/11/15 16:05:00 by isallali         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:30:12 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_free(char *rbuffer)
 		return ;
 	free(rbuffer);
 }
+
 char	*next_line(char *buffer)
 {
 	char	*fbuffer;
