@@ -7,15 +7,15 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+#include "libft.h"
 
 /* Mandatory functions */
 void	error(void);
-char	*find_path(char *cmd, char **envp);
-int		get_next_line(char **line);
-void	execute(char *argv, char **envp);
+char	*extract_path(char *cmd, char **envp);
+void	execution(char *av, char **envp);
 
 /* Bonus functions */
-int		open_file(char *argv, int i);
-void	usage(void);
+int		open_f(char *argv, int i);
+void	err_usage(void);
 
 #endif

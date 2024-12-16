@@ -3,7 +3,7 @@
 char    *extract_path(char *cmd, char **envp)
 {
     char    **path;
-    char    *ppath;
+    char    *ppath
     char    *expath;
     int     i;
 
@@ -17,7 +17,7 @@ char    *extract_path(char *cmd, char **envp)
         ppath = ft_strjoin(path[i], "/");
         expath = ft_strjoin(ppath, cmd);
         free(ppath);
-        if (access(expath, F_OK) == 0)
+        if (access(expath, F_OK))
             return (expath);
         free(expath);
         i++;
@@ -36,12 +36,9 @@ void    execution(char *av, char **envp)
     char    *expath;
 
     i = -1;
-    cmd = ft_split(av, ' ');
-	if (ft_strchr(cmd[0], '/'))
-		expath = cmd[0];
-	else
-    	expath = extract_path(cmd[0], envp);
-    if(!expath || access(expath, X_OK) == -1)
+    cmd = ft_split(av, " ");
+    expath = extract_path(cmd[0], envp);
+    if(!expath)
     {
         while (cmd[++i])
             free(cmd[i]);
@@ -55,32 +52,4 @@ void	error(void)
 {
 	perror("\033[31mError");
 	exit(EXIT_FAILURE);
-}
-
-/* Function that will read input from the terminal and return line. */
-int	get_next_line(char **line)
-{
-	char	*buffer;
-	int		i;
-	int		r;
-	char	c;
-
-	i = 0;
-	r = 0;
-	buffer = (char *)malloc(10000);
-	if (!buffer)
-		return (-1);
-	r = read(0, &c, 1);
-	while (r && c != '\n' && c != '\0')
-	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
-		r = read(0, &c, 1);
-	}
-	buffer[i] = '\n';
-	buffer[++i] = '\0';
-	*line = buffer;
-	free(buffer);
-	return (r);
 }

@@ -1,64 +1,41 @@
-PROG	= pipex
+# Compiler and Flags
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror
+
+# Program Names
+PROG    = pipex
 PROG_B  = pipex_bonus
 
-SRCS 	= srcs/pipex.c srcs/utils.c
-OBJS 	= ${SRCS:.c=.o}
-MAIN	= srcs/pipex.c
+# Source and Object Files
+SRCS    = pipex.c utils.c
+OBJS    = $(SRCS:.c=.o)
 
-SRCS_B	= srcs/pipex_bonus.c srcs/utils.c srcs/utils_bonus.c
-OBJS_B	= ${SRCS_B:.c=.o}
-MAIN_B	= srcs/pipex_bonus.c
+SRCS_B  = pipex_bonus.c utils.c utils_bonus.c
+OBJS_B  = $(SRCS_B:.c=.o)
 
-HEADER	= -Iincludes
+# Header Files
+HEADER  = pipex.h
 
-CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -g
+# Libft Static Library
+LIBFT_A = ./libft.a
 
-.c.o:		%.o : %.c
-					@gcc ${CFLAGS} ${HEADER} -c $< -o $(<:.c=.o)
+# Targets
+all: $(PROG)
 
-all: 		${PROG}
+bonus: $(PROG_B)
 
-${PROG}:	${OBJS}
-					@echo "\033[33m----Compiling lib----"
-					@make re -C ./libft
-					@$(CC) ${OBJS} -Llibft -lft -o ${PROG}
-					@echo "\033[32mPipex Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
+$(PROG): $(OBJS) $(LIBFT_A)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(PROG)
 
-
-bonus:		${PROG_B}
-
-${PROG_B}:	${OBJS_B}
-					@echo "\033[33m----Compiling lib----"
-					@make re -C ./libft
-					@$(CC) ${OBJS_B} -Llibft -lft -o ${PROG_B}
-					@echo "\033[32mPipex Bonus Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
+$(PROG_B): $(OBJS_B) $(LIBFT_A)
+	$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
 
 clean:
-					@make clean -C ./libft
-					@rm -f ${OBJS} ${OBJS_B}
+	rm -f $(OBJS) $(OBJS_B)
 
-fclean: 	clean
-					@make fclean -C ./libft
-					@rm -f $(NAME)
-					@rm -f ${PROG}
-					@echo "\n\033[31mDeleting EVERYTHING! ⌐(ಠ۾ಠ)¬\n"
+fclean: clean
+	rm -f $(PROG) $(PROG_B)
 
-re:			fclean all
+re: fclean all
 
-re_bonus:	fclean bonus
-
-party:
-					@printf "\033c"
-					@echo "\n\033[35m♪┏(・o･)┛♪"
-					@sleep 1
-					@printf "\033c"
-					@echo "\033[1;33m♪┗(・o･)┓♪"
-					@sleep 1
-					@printf "\033c"
-					@echo "\n\033[36m♪┏(・o･)┛♪"
-					@sleep 1
-					@printf "\033c"
-					@echo "\033[34m♪┗(・o･)┓♪\n"
-
-.PHONY: all clean fclean re re_bonus bonus party
+.PHONY: all clean fclean re bonus
