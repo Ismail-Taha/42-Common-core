@@ -33,6 +33,8 @@ int main(int ac, char **av, char **envp)
 
     if (ac == 5)
     {
+        if (av[3][0] == 0 || av[2][0] == 0)
+            error();
         if (pipe(fd) == -1)
             error();
         c_pid = fork();

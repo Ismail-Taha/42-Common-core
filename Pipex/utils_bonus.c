@@ -19,7 +19,7 @@ int	open_f(char *argv, int option)
 	else if (option == 1)
 		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	else if (option == 2)
-		file = open(argv, O_RDONLY, 0777);
+		file = open(argv, O_RDONLY);
 	if (file == -1)
 		error();
 	return (file);

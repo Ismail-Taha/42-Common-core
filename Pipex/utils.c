@@ -53,11 +53,10 @@ void    execution(char *av, char **envp)
 }
 void	error(void)
 {
-	perror("\033[31mError");
+	perror(NULL);
 	exit(EXIT_FAILURE);
 }
 
-/* Function that will read input from the terminal and return line. */
 int	get_next_line(char **line)
 {
 	char	*buffer;

@@ -1,6 +1,6 @@
 # Compiler and Flags
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 # Program Names
 PROG    = pipex
