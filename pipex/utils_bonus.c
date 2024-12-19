@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:53:12 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/17 22:53:13 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:03:23 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	err_usage(void)
 	ft_putstr_fd("Error: Bad argument\n", 2);
 	ft_putstr_fd("Usage:\n", 1);
 	ft_putstr_fd("  ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("  ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	ft_putstr_fd("./pipex \"here_doc\" <LIMITER> <cmd> <cmd1>", 1);
+	ft_putstr_fd(" <...> <file>\n", 1);
 	exit(EXIT_FAILURE);
 }
 
@@ -61,4 +62,11 @@ int	get_next_line(char **line)
 	*line = buffer;
 	free(buffer);
 	return (readed);
+}
+
+size_t	s_l(const char *s)
+{
+	while (*s != '\0')
+		return (1 + s_l(s + 1));
+	return (0);
 }
