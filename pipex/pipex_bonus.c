@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:36:39 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 21:34:37 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:22:05 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	c_process(char *av, char **envp)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		handle_exit_status(pid);
+		exit_status(pid);
 	}
 }
 
@@ -61,7 +61,7 @@ void	heredoc(char *lm, int argc)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		handle_exit_status(reader);
+		exit_status(reader);
 	}
 }
 
@@ -79,7 +79,7 @@ void	last_process(char *av, char **envp, int fileout)
 	}
 	else
 	{
-		handle_exit_status(pid);
+		exit_status(pid);
 	}
 }
 
@@ -107,4 +107,5 @@ int	main(int argc, char **argv, char **envp)
 	while (i < argc - 2)
 		c_process(argv[i++], envp);
 	last_process(argv[argc - 2], envp, fileout);
+	return (0);
 }

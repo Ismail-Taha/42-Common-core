@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:44:17 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 21:16:23 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:22:26 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int ac, char **av, char **envp)
 	c_fork_p(fd, av, envp, &c_pid, &c_pid2);
 	close(fd[0]);
 	close(fd[1]);
-	handle_exit_status(c_pid);
-	handle_exit_status(c_pid2);
+	exit_status(c_pid);
+	exit_status(c_pid2);
 	return (0);
 }

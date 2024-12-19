@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:42:43 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 21:16:40 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:20:52 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ void	error(char *msg, int status)
 	exit(status);
 }
 
-void handle_exit_status(pid_t child_pid)
+void exit_status(pid_t child_pid)
 {
 	int exit_code;
-	int signal_number;
     int status;
 
     if (waitpid(child_pid, &status, 0) == -1)
@@ -92,10 +91,5 @@ void handle_exit_status(pid_t child_pid)
 		exit_code = WEXITSTATUS(status);
         if (exit_code != 0)
             error("Child process exited with error", exit_code);
-    }
-	else if (WIFSIGNALED(status))
-	{
-		signal_number = WTERMSIG(status);
-        error("Child process terminated by signal", signal_number);
     }
 }

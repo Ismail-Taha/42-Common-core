@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:33:59 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 21:10:58 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/19 22:21:09 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_path_info
 }	t_path_info;
 
 void	error(char *msg, int status);
-void handle_exit_status(pid_t child_pid);
+void	exit_status(pid_t child_pid);
 char	*extract_path(char *cmd, char **envp);
 void	execution(char *av, char **envp);
 int		get_next_line(char **line);
