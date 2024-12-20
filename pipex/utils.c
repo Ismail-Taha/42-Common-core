@@ -6,39 +6,48 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:42:43 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 22:20:52 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:59:15 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+static char	*find_executable(char **path, char *cmd)
+{
+	char	*ppath;
+	char	*expath;
+	int		i;
+
+	i = 0;
+	while (path && path[i])
+	{
+		ppath = ft_strjoin(path[i], "/");
+		expath = ft_strjoin(ppath, cmd);
+		free(ppath);
+		if (access(expath, F_OK) == 0)
+		{
+			free_path_array(path);
+			return (expath);
+		}
+		free(expath);
+		i++;
+	}
+	free_path_array(path);
+	return (NULL);
+}
+
 char	*extract_path(char *cmd, char **envp)
 {
-	t_path_info	info;
-	int			i;
+	int		i;
+	char	**path;
 
 	i = 0;
 	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == NULL)
 		i++;
 	if (envp[i] == NULL)
-		return (0);
-	info.path = ft_split(envp[i] + 5, ':');
-	i = 0;
-	while (info.path && info.path[i])
-	{
-		info.ppath = ft_strjoin(info.path[i], "/");
-		info.expath = ft_strjoin(info.ppath, cmd);
-		free(info.ppath);
-		if (access(info.expath, F_OK) == 0)
-			return (info.expath);
-		free(info.expath);
-		i++;
-	}
-	i = -1;
-	while (info.path && info.path[++i])
-		free(info.path[i]);
-	free(info.path);
-	return (0);
+		return (NULL);
+	path = ft_split(envp[i] + 5, ':');
+	return (find_executable(path, cmd));
 }
 
 void	execution(char *av, char **envp)
@@ -60,36 +69,32 @@ void	execution(char *av, char **envp)
 		while (cmd[++i])
 			free(cmd[i]);
 		free(cmd);
+		if (expath)
+			free(expath);
 		error("Command not found or not executable", 127);
 	}
-	if (execve(expath, cmd, envp) == -1)
-		error("Execve failed", 126);
+	execve(expath, cmd, envp);
+	perror("Error");
+	exit(126);
+}
+
+int	exit_status(pid_t child_pid)
+{
+	int	status;
+	int	exit_status;
+
+	exit_status = 0;
+	if (waitpid(child_pid, &status, 0) == -1)
+		error("Failed to wait for child process", EXIT_FAILURE);
+	if (WIFEXITED(status))
+		exit_status = WEXITSTATUS(status);
+	return (exit_status);
 }
 
 void	error(char *msg, int status)
 {
-	if (msg)
-	{
-		ft_putstr_fd("Error: ", 2);
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd("\n", 2);
-	}
-	else
-		perror("Error");
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
 	exit(status);
-}
-
-void exit_status(pid_t child_pid)
-{
-	int exit_code;
-    int status;
-
-    if (waitpid(child_pid, &status, 0) == -1)
-        error("Failed to wait for child process", EXIT_FAILURE);
-    if (WIFEXITED(status))
-	{
-		exit_code = WEXITSTATUS(status);
-        if (exit_code != 0)
-            error("Child process exited with error", exit_code);
-    }
 }

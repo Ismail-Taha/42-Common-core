@@ -12,23 +12,25 @@ OBJS_B  = $(SRCS_B:.c=.o)
 
 HEADER  = pipex.h
 
-LIBFT_A = inclibft/libft.a
+LIBFT_A = libft/libft.a
 
 all: $(PROG)
+	
 
 bonus: $(PROG_B)
 
-$(PROG): $(OBJS) $(LIBFT_A)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(PROG)
+$(PROG): $(OBJS) 
+	@cd libft && make && make clean
+	$(CC) $(CFLAGS) $(OBJS)  $(LIBFT_A) -o $(PROG)
 
-$(PROG_B): $(OBJS_B) $(LIBFT_A)
+$(PROG_B): $(OBJS_B) 
 	$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
 
 clean:
 	rm -f $(OBJS) $(OBJS_B)
 
 fclean: clean
-	rm -f $(PROG) $(PROG_B)
+	rm -f $(PROG) $(PROG_B) $(LIBFT_A)
 
 re: fclean all
 

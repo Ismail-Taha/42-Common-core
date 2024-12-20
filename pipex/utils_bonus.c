@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:53:12 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/18 16:03:23 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:59:08 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,15 @@ size_t	s_l(const char *s)
 	while (*s != '\0')
 		return (1 + s_l(s + 1));
 	return (0);
+}
+
+void	init_pipex(t_pipex *px, int argc, char **argv, char **envp)
+{
+	px->argc = argc;
+	px->argv = argv;
+	px->envp = envp;
+	px->index = 0;
+	px->pids = malloc(sizeof(pid_t) * (argc - 3));
+	if (!px->pids)
+		error("Memory allocation failed", 1);
 }

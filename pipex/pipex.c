@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:44:17 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/19 22:22:26 by isallali         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:54:30 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,31 @@ void	p_process(char **av, char **envp, int *fd)
 	execution(av[3], envp);
 }
 
-void c_fork_p(int *fd, char **av, char **envp, pid_t *c_pid, pid_t *c_pid2)
+void	c_fork_p(t_pipex *pipex)
 {
-	if (pipe(fd) == -1)
+	if (pipe(pipex->fd) == -1)
 		error("Failed to create pipe", EXIT_FAILURE);
-	if ((*c_pid = fork()) == -1)
+	pipex->c_pid1 = fork();
+	if (pipex->c_pid1 == -1)
 		error("Failed to fork process1", EXIT_FAILURE);
-	if (*c_pid == 0)
-		c_process(av, envp, fd);
-	if ((*c_pid2 = fork()) == -1)
+	if (pipex->c_pid1 == 0)
+		c_process(pipex->argv, pipex->envp, pipex->fd);
+	pipex->c_pid2 = fork();
+	if (pipex->c_pid2 == -1)
 		error("Failed to fork process2", EXIT_FAILURE);
-	if (*c_pid2 == 0)
-		p_process(av, envp, fd);
+	if (pipex->c_pid2 == 0)
+		p_process(pipex->argv, pipex->envp, pipex->fd);
+}
+
+void	init_data(t_pipex *pipex, char **av, char **envp)
+{
+	pipex->argv = av;
+	pipex->envp = envp;
 }
 
 int	main(int ac, char **av, char **envp)
 {
-	int		fd[2];
-	pid_t	c_pid;
-	pid_t	c_pid2;
+	t_pipex	pipex;
 
 	if (ac != 5)
 	{
@@ -70,10 +76,10 @@ int	main(int ac, char **av, char **envp)
 	}
 	if (av[3][0] == 0 || av[2][0] == 0)
 		error("Command arguments are empty", EXIT_FAILURE);
-	c_fork_p(fd, av, envp, &c_pid, &c_pid2);
-	close(fd[0]);
-	close(fd[1]);
-	exit_status(c_pid);
-	exit_status(c_pid2);
-	return (0);
+	init_data(&pipex, av, envp);
+	c_fork_p(&pipex);
+	close(pipex.fd[0]);
+	close(pipex.fd[1]);
+	exit_status(pipex.c_pid1);
+	return (exit_status(pipex.c_pid2));
 }
