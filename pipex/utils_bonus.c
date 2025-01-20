@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:53:12 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/20 20:59:08 by isallali         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:33:46 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	err_usage(void)
 	exit(EXIT_FAILURE);
 }
 
-int	open_f(char *argv, int option)
+int	open_f(char *argv, int option, t_pipex *pp)
 {
 	int	file;
 
@@ -34,7 +34,10 @@ int	open_f(char *argv, int option)
 	else if (option == 2)
 		file = open(argv, O_RDONLY);
 	if (file == -1)
+	{
+		free(pp->pids);
 		error("Failed to open file", 1);
+	}
 	return (file);
 }
 

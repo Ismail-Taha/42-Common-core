@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:44:17 by isallali          #+#    #+#             */
-/*   Updated: 2025/01/20 09:57:01 by isallali         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:04:33 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ void	c_process(char **av, char **envp, int *fd)
 
 	infile = open(av[1], O_RDONLY);
 	if (infile == -1)
+	{
+		close(fd[0]);
+		close(fd[1]);
 		error("Cannot open input file", EXIT_FAILURE);
+	}
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	close(infile);
-	execution(av[2], envp);
+	execution(av[2], envp, NULL);
 }
 
 void	p_process(char **av, char **envp, int *fd)
@@ -39,7 +43,7 @@ void	p_process(char **av, char **envp, int *fd)
 	close(fd[1]);
 	close(fd[0]);
 	close(outfile);
-	execution(av[3], envp);
+	execution(av[3], envp, NULL);
 }
 
 void	c_fork_p(t_pipex *pipex)

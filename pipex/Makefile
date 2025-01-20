@@ -4,10 +4,10 @@ CFLAGS  = -Wall -Wextra -Werror
 PROG    = pipex
 PROG_B  = pipex_bonus
 
-SRCS    = pipex.c utils.c
+SRCS    = pipex.c utils.c freepip.c
 OBJS    = $(SRCS:.c=.o)
 
-SRCS_B  = pipex_bonus.c utils.c utils_bonus.c
+SRCS_B  = pipex_bonus.c freepip.c utils.c utils_bonus.c
 OBJS_B  = $(SRCS_B:.c=.o)
 
 HEADER  = pipex.h
@@ -24,6 +24,7 @@ $(PROG): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS)  $(LIBFT_A) -o $(PROG)
 
 $(PROG_B): $(OBJS_B) 
+	@cd libft && make && make clean
 	$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
 
 clean:

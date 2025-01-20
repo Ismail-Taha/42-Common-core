@@ -19,7 +19,7 @@ static int	w_count(char const *s, char c)
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 	{
 		while (s[i] != '\0' && s[i] == c)
 			i++;
@@ -75,7 +75,7 @@ char	**ft_split(char const *s, char c)
 	int		i;
 
 	i = 0;
-	if (!s)
+	if (!s || w_count(s, c) == 0)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (w_count(s, c) + 1));
 	if (!strs)

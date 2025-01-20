@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:42:43 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/20 22:19:50 by isallali         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:08:16 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,26 @@ char	*extract_path(char *cmd, char **envp)
 	return (find_executable(path, cmd));
 }
 
-void	execution(char *av, char **envp)
+void	execution(char *av, char **envp, t_pipex *px)
 {
 	char	**cmd;
-	int		i;
 	char	*expath;
 
-	i = -1;
 	cmd = ft_split(av, ' ');
 	if (!cmd)
+	{
+		if (px)
+			free(px->pids);
 		error("Failed to parse command", 2);
+	}
 	if (ft_strchr(cmd[0], '/'))
 		expath = cmd[0];
 	else
 		expath = extract_path(cmd[0], envp);
 	if (!expath || access(expath, X_OK) == -1)
 	{
-		while (cmd[++i])
-			free(cmd[i]);
-		free(cmd);
-		if (expath)
+		free_mem(cmd);
+		if (expath && expath != cmd[0])
 			free(expath);
 		error("Command not found or not executable", 127);
 	}

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:33:59 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/20 22:48:13 by isallali         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:06:01 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ typedef struct s_pipex
 
 void	init_pipex(t_pipex *px, int argc, char **argv, char **envp);
 void	error(char *msg, int status);
+void    free_mem(char **arr);
 int		exit_status(pid_t child_pid);
 char	*extract_path(char *cmd, char **envp);
-void	execution(char *av, char **envp);
+void	execution(char *av, char **envp, t_pipex *px);
 int		get_next_line(char **line);
-int		open_f(char *argv, int i);
+int		open_f(char *argv, int i, t_pipex *pp);
 void	err_usage(void);
 size_t	s_l(const char *s);
 
