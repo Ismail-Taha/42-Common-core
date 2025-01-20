@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 22:44:17 by isallali          #+#    #+#             */
-/*   Updated: 2024/12/20 20:54:30 by isallali         ###   ########.fr       */
+/*   Updated: 2025/01/20 09:57:01 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	p_process(char **av, char **envp, int *fd)
 {
 	int	outfile;
 
-	outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile == -1)
 		error("Cannot open or create output file", EXIT_FAILURE);
 	dup2(fd[0], STDIN_FILENO);
