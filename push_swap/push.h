@@ -29,9 +29,8 @@ typedef struct s_stack
 
 t_stack *stack_butm(t_stack *st);
 int stack_len(t_stack *st);
-int get_max_indx(t_stack *st);
 int abs_value(int n);
-int get_min_pos(t_stack **st);
+
 void    sa(t_stack **a, int opr);
 void    sb(t_stack **b, int opr);
 void    ss(t_stack **a, t_stack **b, int opr);
@@ -43,3 +42,12 @@ void    rr(t_stack **a, t_stack **b, int opr);
 void    rra(t_stack **a, int opr);
 void    rrb(t_stack **b, int opr);
 void    rrr(t_stack **a, t_stack **b, int opr);
+
+int get_min_pos(t_stack **st);
+int get_max_indx(t_stack *st);
+void    set_position(t_stack **st);
+void    set_target(t_stack **a, t_stack **b);
+int target_position(t_stack **a, int indx, int targ_indx, int targ_pos);
+
+void    calculat_costs(t_stack **a, t_stack **b);
+void    nearest_way(t_stack **a, t_stack **b);

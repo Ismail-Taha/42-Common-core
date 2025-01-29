@@ -79,3 +79,15 @@ void    last_sort(t_stack **a)
         }
     }
 }
+
+void    sort_stack(t_stack **a, t_stack **b)
+{
+    push_save(a, b);
+    sort_rest(a);
+    while(*b)
+    {
+        set_target(a, b);
+        calculat_costs(a, b);
+        nearest_way(a, b);
+    }
+}
