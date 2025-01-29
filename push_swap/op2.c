@@ -30,15 +30,15 @@ void    rra(t_stack **a, int opr)
     butm->next = *a;
     *a = butm;
     if (opr)
-        write(1, "rra\n", 4);    
+        write(1, "rra\n", 4);
 }
 
 void    rrb(t_stack **b, int opr)
 {
     t_stack *butm;
     t_stack *bf_butm;
-    
-    if (!a || !(*a)->next)
+
+    if (!b || !(*b)->next)
         return;
     butm = *b;
     bf_butm = NULL;
@@ -60,4 +60,11 @@ void    rrr(t_stack **a, t_stack **b, int opr)
     rrb(b, 0);
     if (opr)
         write(1, "rrr\n", 4);
+}
+
+int abs_value(int n)
+{
+    if (n < 0)
+        return (n * -1);
+    return (n);
 }

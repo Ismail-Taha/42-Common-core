@@ -29,6 +29,9 @@ typedef struct s_stack
 
 t_stack *stack_butm(t_stack *st);
 int stack_len(t_stack *st);
+int get_max_indx(t_stack *st);
+int abs_value(int n);
+int get_min_pos(t_stack **st);
 void    sa(t_stack **a, int opr);
 void    sb(t_stack **b, int opr);
 void    ss(t_stack **a, t_stack **b, int opr);

@@ -29,7 +29,7 @@ void    sa(t_stack **a, int opr)
 void    sb(t_stack **b, int opr)
 {
     t_stack *tmp;
-    
+
     if(!b || !*b || !(*b)->next)
         return ;
     tmp = (*b)->next;
@@ -64,7 +64,7 @@ void    pa(t_stack **a, t_stack **b, int opr)
 void    pb(t_stack **a, t_stack **b, int opr)
 {
     t_stack *tmp;
-    
+
     if (!a || !*a)
         return;
     tmp = *a;
@@ -73,52 +73,4 @@ void    pb(t_stack **a, t_stack **b, int opr)
     *b = tmp;
     if (opr)
         write(1, "pb\n", 3);
-}
-t_stack *new(int val)
-{
-    t_stack *node = malloc(sizeof(t_stack));
-    if (!node)
-        return NULL;
-    node->value = val;
-    node->next = NULL;
-    return node;
-}
-void print_stack(t_stack *stack)
-{
-    while (stack)
-    {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    printf("NULL\n");
-}
-
-int main(void)
-{
-    t_stack *st = new(4);
-    st->next = new(2);
-    st->next->next = new(5);
-    t_stack *b = NULL;
-    
-    sa(&st, 1);
-    print_stack(st);
-    pb(&st, &b, 1);
-    print_stack(st);
-    print_stack(b);
-    pa(&st, &b, 1);
-    print_stack(st);
-    print_stack(b);
-    pb(&st, &b, 1);
-    print_stack(st);
-    print_stack(b);
-    ss(&st, &b, 1);
-    print_stack(st);
-    print_stack(b);
-    pb(&st, &b, 1);
-    sb(&b, 1);
-    pb(&st, &b, 1);
-    print_stack(st);
-    print_stack(b);
-    
-    return 0;
 }

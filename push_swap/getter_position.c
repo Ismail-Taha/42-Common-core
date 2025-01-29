@@ -88,7 +88,7 @@ int get_max_indx(t_stack *st)
     return (max_indx);
 }
 
-int get_min_indx(t_stack **st)
+int get_min_pos(t_stack **st)
 {
     t_stack *tmp
     int     min_indx;
@@ -96,5 +96,16 @@ int get_min_indx(t_stack **st)
 
     tmp = *st;
     min_indx = INT_MAX;
-    set_position
+    min_pos = tmp->pos;
+    set_position(st);
+    while (tmp)
+    {
+        if (tmp->indx < min_indx)
+        {
+            min_indx = tmp->indx;
+            min_pos = tmp->pos;
+        }
+        tmp = tmp->next;
+    }
+    return (min_pos);
 }

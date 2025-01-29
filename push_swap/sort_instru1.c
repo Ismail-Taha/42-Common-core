@@ -39,4 +39,43 @@ void    push_save(t_stack **a, t_stack **b)
     }
 }
 
+void    sort_rest(t_stack **st)
+{
+    int max_idx;
 
+    if (!(*st) || !(*st)->next || !(*st)->next->next)
+        return ;
+    max_idx = get_max_indx(*st);
+    if ((*st)->indx == max_idx)
+        ra(st, 1);
+    else if ((*st)->next->indx == max_idx)
+        rra(st, 1);
+    if ((*st)->indx > (*st)->next->indx)
+        sa(st, 1);
+}
+
+void    last_sort(t_stack **a)
+{
+    int min_pos;
+    int size;
+
+    size = stack_len(*a);
+    min_pos = get_min_pos(a);
+
+    if (min_pos > size / 2)
+    {
+        while (min_pos < size)
+        {
+            rra(a, 1);
+            min_pos++;
+        }
+    }
+    else
+    {
+        while (min_pos > 0)
+        {
+            ra(a, 1);
+            min_pos--;
+        }
+    }
+}

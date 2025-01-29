@@ -40,7 +40,7 @@ int fill_array(t_stack *a)
     int *arr;
     int size;
     int i;
-    
+
     if (!a)
         return (NULL);
     size = stack_len(a);
@@ -57,13 +57,13 @@ int fill_array(t_stack *a)
     return (arr);
 }
 
-void    get_index(t_stack **st)
+void    set_index(t_stack **st)
 {
     int *arr;
     int size;
     int i;
     t_stack *hold;
-    
+
     size = stack_len(st);
     if (size == 0)
         return;
@@ -85,4 +85,3 @@ void    get_index(t_stack **st)
     }
     free(arr);
 }
-
