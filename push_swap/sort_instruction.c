@@ -85,3 +85,16 @@ void    set_index(t_stack **st)
     }
     free(arr);
 }
+
+int sorted(t_stack *st)
+{
+    if (!st)
+        return (0);
+    while (st->next)
+    {
+        if (st->value > st->next->value)
+            return (0);
+        st = st->next;
+    }
+    return (1);
+}

@@ -48,6 +48,7 @@ int get_max_indx(t_stack *st);
 void    set_position(t_stack **st);
 void    set_target(t_stack **a, t_stack **b);
 int target_position(t_stack **a, int indx, int targ_indx, int targ_pos);
+int sorted(t_stack *st);
 
 void    calculat_costs(t_stack **a, t_stack **b);
 void    nearest_way(t_stack **a, t_stack **b);

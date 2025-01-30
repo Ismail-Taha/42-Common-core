@@ -90,4 +90,6 @@ void    sort_stack(t_stack **a, t_stack **b)
         calculat_costs(a, b);
         nearest_way(a, b);
     }
+    if (!sorted(*a))
+        last_sort(a);
 }

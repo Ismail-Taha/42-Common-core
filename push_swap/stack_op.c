@@ -16,9 +16,9 @@ t_stack *stack_butm(t_stack *st)
 {
     if (!st)
         return (NULL);
-    if (!st->next)
-        return (st);
-    return (stack_butm(st->next));
+    while (st->next)
+        st = st->next;
+    return (st);
 }
 
 int stack_len(t_stack *st)
@@ -32,4 +32,51 @@ int stack_len(t_stack *st)
         st = st->next;
     }
     return (len);
+}
+
+t_stack new_stack(int value)
+{
+    t_stack *new_st;
+
+    new_st = malloc(sizeof(t_stack));
+    if (!new_st)
+        return (NULL);
+    new_st->value = value;
+    new_st->indx = 0;
+    new_st->pos = -1;
+    new_st->targ_pos = -1;
+    new_st->cost_a = -1;
+    new_st->cost_b = -1;
+    new_st->next = NULL;
+    return (new_st);
+}
+
+void    add_back(t_stack **a, t_stack *new)
+{
+    t_stack *end;
+
+    if (!new)
+        return ;
+    if (!*a)
+    {
+        *a = new;
+        return (a);
+    }
+    end = stack_butm(*a);
+    end->next = new;
+}
+
+void    free_stack(t_stack **a)
+{
+    t_stack *tmp;
+
+    if (!a)
+        return ;
+    while (*a)
+    {
+        tmp = (*a)->next;
+        free(*a);
+        *a = tmp;
+    }
+    *a = NULL;
 }
