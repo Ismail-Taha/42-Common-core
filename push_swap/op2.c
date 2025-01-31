@@ -51,7 +51,7 @@ void    rrb(t_stack **b, int opr)
     butm->next = *b;
     *b = butm;
     if (opr)
-        write(1, "rra\n", 4);
+        write(1, "rrb\n", 4);
 }
 
 void    rrr(t_stack **a, t_stack **b, int opr)

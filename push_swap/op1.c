@@ -45,5 +45,5 @@ void    rr(t_stack **a, t_stack **b, int opr)
     ra(a, 0);
     rb(b, 0);
     if (opr)
-        write(1, "rr\n", 1);
+        write(1, "rr\n", 3);
 }

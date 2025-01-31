@@ -27,7 +27,7 @@ void    sort_arr(int *arr, int size)
             {
                 swap = arr[i];
                 arr[i] = arr[i + 1];
-                arr[i + 1] = arr[i];
+                arr[i + 1] = swap;
             }
             i++;
         }
@@ -35,7 +35,7 @@ void    sort_arr(int *arr, int size)
     }
 }
 
-int fill_array(t_stack *a)
+int *fill_array(t_stack *a)
 {
     int *arr;
     int size;
@@ -53,7 +53,7 @@ int fill_array(t_stack *a)
         arr[i++] = a->value;
         a = a->next;
     }
-    sort_arr(arr, i);
+    sort_arr(arr, size);
     return (arr);
 }
 
@@ -64,24 +64,24 @@ void    set_index(t_stack **st)
     int i;
     t_stack *hold;
 
-    size = stack_len(st);
+    size = stack_len(*st);
     if (size == 0)
         return;
-    arr = fill_array(st);
-    i = 0;
-    while (i < size)
+    arr = fill_array(*st);
+    hold = *st;
+    while(hold)
     {
-        hold = *st;
-        while(hold)
+        i = 0;
+        while (i < size)
         {
-            if (arr[i] == hold->value && hold->index == 0)
+            if (arr[i] == hold->value)
             {
-                hold->index = i + 1;
+                hold->indx = i + 1;
                 break;
             }
-            hold = hold->next;
+            i++;
         }
-        i++;
+        hold = hold->next;
     }
     free(arr);
 }

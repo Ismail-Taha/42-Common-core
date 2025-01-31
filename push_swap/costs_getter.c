@@ -38,8 +38,8 @@ void    rr_costs(t_stack **a, t_stack **b, int  *cost_a, int *cost_b)
     while (*cost_a > 0 && cost_b > 0)
     {
         rr(a, b, 1);
-        *cost_a--;
-        *cost_b--;
+        (*cost_a)--;
+        (*cost_b)--;
     }
 }
 
@@ -48,8 +48,8 @@ void    rrr_costs(t_stack **a, t_stack **b, int  *cost_a, int *cost_b)
     while (*cost_a < 0 && cost_b < 0)
     {
         rrr(a, b, 1);
-        *cost_a++;
-        *cost_b++;
+        (*cost_a)++;
+        (*cost_b)++;
     }
 }
 
@@ -64,9 +64,9 @@ void    nearest_way(t_stack **a, t_stack **b)
     tmp = *b;
     while (tmp)
     {
-        if (abs_value(tmp->cost_a) + abs_value(tmp->cost_a) < near)
+        if (abs_value(tmp->cost_a) + abs_value(tmp->cost_b) < near)
         {
-            near = abs_value(tmp->cost_a) + abs_value(tmp->cost_a);
+            near = abs_value(tmp->cost_b) + abs_value(tmp->cost_a);
             cost_a = tmp->cost_a;
             cost_b = tmp->cost_b;
         }

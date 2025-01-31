@@ -90,7 +90,7 @@ int get_max_indx(t_stack *st)
 
 int get_min_pos(t_stack **st)
 {
-    t_stack *tmp
+    t_stack *tmp;
     int     min_indx;
     int     min_pos;
 

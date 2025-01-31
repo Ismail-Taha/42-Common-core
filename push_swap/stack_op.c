@@ -34,7 +34,7 @@ int stack_len(t_stack *st)
     return (len);
 }
 
-t_stack new_stack(int value)
+t_stack *new_stack(int value)
 {
     t_stack *new_st;
 
@@ -55,12 +55,12 @@ void    add_back(t_stack **a, t_stack *new)
 {
     t_stack *end;
 
-    if (!new)
+    if (!new || !a)
         return ;
     if (!*a)
     {
         *a = new;
-        return (a);
+        return ;
     }
     end = stack_butm(*a);
     end->next = new;
@@ -70,7 +70,7 @@ void    free_stack(t_stack **a)
 {
     t_stack *tmp;
 
-    if (!a)
+    if (!a || !(*a))
         return ;
     while (*a)
     {
