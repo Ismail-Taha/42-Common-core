@@ -17,7 +17,7 @@ void    rra(t_stack **a, int opr)
     t_stack *butm;
     t_stack *bf_btm;
 
-    if (!a || !(*a)->next)
+    if (!a || !*a || !(*a)->next)
         return;
     butm = *a;
     bf_btm = NULL;
@@ -38,7 +38,7 @@ void    rrb(t_stack **b, int opr)
     t_stack *butm;
     t_stack *bf_butm;
 
-    if (!b || !(*b)->next)
+    if (!b || !*b || !(*b)->next)
         return;
     butm = *b;
     bf_butm = NULL;

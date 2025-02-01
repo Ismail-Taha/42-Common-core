@@ -35,7 +35,7 @@ void    calculat_costs(t_stack **a, t_stack **b)
 
 void    rr_costs(t_stack **a, t_stack **b, int  *cost_a, int *cost_b)
 {
-    while (*cost_a > 0 && cost_b > 0)
+    while (*cost_a > 0 && *cost_b > 0)
     {
         rr(a, b, 1);
         (*cost_a)--;
@@ -45,7 +45,7 @@ void    rr_costs(t_stack **a, t_stack **b, int  *cost_a, int *cost_b)
 
 void    rrr_costs(t_stack **a, t_stack **b, int  *cost_a, int *cost_b)
 {
-    while (*cost_a < 0 && cost_b < 0)
+    while (*cost_a < 0 && *cost_b < 0)
     {
         rrr(a, b, 1);
         (*cost_a)++;

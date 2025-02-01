@@ -30,7 +30,7 @@ void    rb(t_stack **b, int opr)
 {
     t_stack *tmp;
 
-    if (!b || !*b || !(*b))
+    if (!b || !*b || !(*b)->next)
         return;
     tmp = *b;
     *b = (*b)->next;

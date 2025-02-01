@@ -52,7 +52,7 @@ void    pa(t_stack **a, t_stack **b, int opr)
 {
     t_stack *tmp;
 
-    if (!b || !*b)
+    if (!b || !*b || !a)
         return;
     tmp = *b;
     *b = (*b)->next;
@@ -65,7 +65,7 @@ void    pb(t_stack **a, t_stack **b, int opr)
 {
     t_stack *tmp;
 
-    if (!a || !*a)
+    if (!a || !*a || !b)
         return;
     tmp = *a;
     *a = (*a)->next;
