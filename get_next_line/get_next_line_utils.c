@@ -35,9 +35,7 @@ size_t	ft_strlen(char *s)
 void	*ft_calloc(size_t count, size_t size)
 {
 	char	*alloc;
-	size_t	i;
 
-	i = 0;
 	if (!count || !size)
 		return (NULL);
 	if (size != 0 && size > (SIZE_MAX / count))

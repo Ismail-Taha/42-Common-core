@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "random": "c"
+        "random": "c",
+        "checker.h": "c",
+        "push.h": "c"
     }
 }

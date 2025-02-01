@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:25:38 by isallali          #+#    #+#             */
-/*   Updated: 2025/01/31 15:43:33 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:51:55 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ t_stack *validat_arg(int ac, char **av)
     st = NULL;
     while (++i < ac - 1)
     {
+        if (*av[i] == 0)
+            return (free_stack(&st), pr_err(), NULL);
         splits = ft_split(av[i + 1], 32);
         if (!splits)
             return (ft_free(splits), free_stack(&st), NULL);

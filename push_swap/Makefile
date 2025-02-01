@@ -1,14 +1,14 @@
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS  = -Wall -Wextra -Werror
 
 PROG    = push_swap
-# PROG_B  = pipex_bonus
-
-SRCS    = push.c costs_getter.c pos_getter.c helpers.c inp_checker.c op.c op1.c op2.c stack_op.c sort_instruction.c sort_instruction1.c
+PROG_B  = checker
+SHARED_SRCS = push_s/costs_getter.c push_s/pos_getter.c push_s/helpers.c push_s/inp_checker.c push_s/op.c push_s/op1.c push_s/op2.c push_s/stack_op.c push_s/sort_instruction.c push_s/sort_instruction1.c
+SRCS    =  $(SHARED_SRCS) push_s/push.c
 OBJS    = $(SRCS:.c=.o)
 
-# SRCS_B  = pipex_bonus.c freepip.c utils.c utils_bonus.c
-# OBJS_B  = $(SRCS_B:.c=.o)
+SRCS_B  =  $(SHARED_SRCS) push_checker/Checker.c push_checker/get_next_line.c push_checker/get_next_line_utils.c
+OBJS_B  = $(SRCS_B:.c=.o)
 
 HEADER  = push.h
 
@@ -17,21 +17,23 @@ LIBFT_A = Libft/libft.a
 all: $(PROG)
 	
 
-# bonus: $(PROG_B)
+bonus: $(OBJS_B)
+	make -C Libft && make -C Libft clean 
+	cc $(OBJS_B) $(LIBFT_A) -o checker 
 
 $(PROG): $(OBJS) 
-	@cd Libft && make && make clean
+	make -C Libft && make -C Libft clean
 	$(CC) $(CFLAGS) $(OBJS)  $(LIBFT_A) -o $(PROG)
 
 # $(PROG_B): $(OBJS_B) 
-# 	@cd libft && make && make clean
+# 	make -C Libft && make -C Libft clean
 # 	$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_B)
 
 fclean: clean
-	rm -f $(PROG) $(LIBFT_A)
+	rm -f $(PROG) $(LIBFT_A) $(PROG_B)
 
 re: fclean all
 
