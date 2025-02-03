@@ -12,59 +12,59 @@
 
 #include "push.h"
 
-void    rra(t_stack **a, int opr)
+void	rra(t_stack **a, int opr)
 {
-    t_stack *butm;
-    t_stack *bf_btm;
+	t_stack	*butm;
+	t_stack	*bf_btm;
 
-    if (!a || !*a || !(*a)->next)
-        return;
-    butm = *a;
-    bf_btm = NULL;
-    while (butm->next)
-    {
-        bf_btm = butm;
-        butm = butm->next;
-    }
-    bf_btm->next = NULL;
-    butm->next = *a;
-    *a = butm;
-    if (opr)
-        write(1, "rra\n", 4);
+	if (!a || !*a || !(*a)->next)
+		return ;
+	butm = *a;
+	bf_btm = NULL;
+	while (butm->next)
+	{
+		bf_btm = butm;
+		butm = butm->next;
+	}
+	bf_btm->next = NULL;
+	butm->next = *a;
+	*a = butm;
+	if (opr)
+		write(1, "rra\n", 4);
 }
 
-void    rrb(t_stack **b, int opr)
+void	rrb(t_stack **b, int opr)
 {
-    t_stack *butm;
-    t_stack *bf_butm;
+	t_stack	*butm;
+	t_stack	*bf_butm;
 
-    if (!b || !*b || !(*b)->next)
-        return;
-    butm = *b;
-    bf_butm = NULL;
-    while (butm->next)
-    {
-        bf_butm = butm;
-        butm = butm->next;
-    }
-    bf_butm->next = NULL;
-    butm->next = *b;
-    *b = butm;
-    if (opr)
-        write(1, "rrb\n", 4);
+	if (!b || !*b || !(*b)->next)
+		return ;
+	butm = *b;
+	bf_butm = NULL;
+	while (butm->next)
+	{
+		bf_butm = butm;
+		butm = butm->next;
+	}
+	bf_butm->next = NULL;
+	butm->next = *b;
+	*b = butm;
+	if (opr)
+		write(1, "rrb\n", 4);
 }
 
-void    rrr(t_stack **a, t_stack **b, int opr)
+void	rrr(t_stack **a, t_stack **b, int opr)
 {
-    rra(a, 0);
-    rrb(b, 0);
-    if (opr)
-        write(1, "rrr\n", 4);
+	rra(a, 0);
+	rrb(b, 0);
+	if (opr)
+		write(1, "rrr\n", 4);
 }
 
-int abs_value(int n)
+int	abs_value(int n)
 {
-    if (n < 0)
-        return (n * -1);
-    return (n);
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }

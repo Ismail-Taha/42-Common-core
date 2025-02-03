@@ -12,22 +12,23 @@
 
 #include "push.h"
 
-void    ft_free(char **str)
+void	ft_free(char **str)
 {
-    int i = -1;
+	int	i;
 
-    while (str && str[++i])
-        free(str[i]);
-    free(str);
+	i = -1;
+	while (str && str[++i])
+		free(str[i]);
+	free(str);
 }
 
-void    pr_err(void)
+void	pr_err(void)
 {
-    ft_putstr_fd("Error\n", 2);
-    exit(1);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }
 
-int cmp_value(int a, int b)
+int	cmp_value(int a, int b)
 {
-    return (a == b);
+	return (a == b);
 }

@@ -6,18 +6,18 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 12:15:30 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/01 14:34:27 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/02 20:20:10 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdint.h>
-# include "./../push_s/push.h"
 # include "./../Libft/libft.h"
+# include "./../push_s/push.h"
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
