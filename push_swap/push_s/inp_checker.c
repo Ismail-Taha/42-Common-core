@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:25:38 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/01 17:12:55 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:18:03 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ int	valid_atoi(const char *str, char **arg, t_stack **st)
 	}
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]))
-			res = res * 10 + str[i++] - 48;
-		if (!((res * sign) >= INT_MIN && (res * sign) <= INT_MAX))
+		if (!ft_isdigit(str[i]))
 			return (ft_free(arg), free_stack(st), pr_err(), 1);
+		if (sign == 1 && (res > INT_MAX / 10 || (res == INT_MAX / 10 && str[i] - 48 > INT_MAX % 10)))
+			return (ft_free(arg), free_stack(st), pr_err(), 1);
+		if (sign == -1 && (res > -(INT_MIN / 10) || (res == -(INT_MIN / 10) && str[i] - 48 > -(INT_MIN % 10))))
+			return (ft_free(arg), free_stack(st), pr_err(), 1);
+		res = res * 10 + str[i] - 48;
+		i++;
 	}
 	return (res * sign);
 }
@@ -86,25 +90,34 @@ int	validat_inp(char **str)
 	return (0);
 }
 
+int split_size(char **s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 t_stack	*validat_arg(int ac, char **av)
 {
 	int		i;
 	char	**splits;
 	t_stack	*st;
 
-	i = -1;
+	i = 0;
 	st = NULL;
-	while (++i < ac - 1)
+	while (i < ac)
 	{
-		if (*av[i] == 0)
-			return (free_stack(&st), pr_err(), NULL);
-		splits = ft_split(av[i + 1], 32);
-		if (!splits)
+		splits = ft_split(av[i], ' ');
+		if (!splits || split_size(splits) == 0)
 			return (ft_free(splits), free_stack(&st), NULL);
 		if (validat_inp(splits))
 			return (ft_free(splits), free_stack(&st), NULL);
 		stack_init(splits, &st);
 		ft_free(splits);
+		i++;
 	}
 	if (duplicat(st))
 		return (free_stack(&st), NULL);

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:31:10 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/02 20:16:38 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:47:23 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac == 1)
 		pr_err();
-	a = validat_arg(ac, av);
+	a = validat_arg(ac - 1, av + 1);
 	if (!a)
 		pr_err();
 	if (!sorted(a))

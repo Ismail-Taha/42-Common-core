@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:08:14 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/03 11:53:29 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:37:13 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-// helpers
-void				print_sorted_stack(t_stack *stack);
-void				ft_putnbr(int n);
 
 t_stack				*stack_butm(t_stack *st);
 int					stack_len(t_stack *st);
