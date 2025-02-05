@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:42:27 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/02 20:41:12 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:13:01 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac == 1)
 		return (1);
-	a = validat_arg(ac, av);
+	a = validat_arg(ac - 1, av + 1);
 	if (!a)
 		pr_err();
 	opr = get_next_line(STDIN_FILENO);
