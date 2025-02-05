@@ -6,18 +6,18 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:08:14 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/03 14:37:13 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:25:15 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PUSH_H
+#ifndef PUSH_H
 # define PUSH_H
 
-#include "../Libft/libft.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "../Libft/libft.h"
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_stack
 {
@@ -29,7 +29,6 @@ typedef struct s_stack
 	int				cost_b;
 	struct s_stack	*next;
 }					t_stack;
-
 
 t_stack				*stack_butm(t_stack *st);
 int					stack_len(t_stack *st);
@@ -72,5 +71,7 @@ void				nearest_way(t_stack **a, t_stack **b);
 int					cmp_value(int a, int b);
 void				ft_free(char **str);
 void				pr_err(void);
+int					split_size(char **s);
+int					check_overflow(long res, int sign, char digit);
 
 #endif /*PUSH_H*/

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:25:38 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/03 15:18:03 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:32:00 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int	valid_atoi(const char *str, char **arg, t_stack **st)
 	{
 		if (!ft_isdigit(str[i]))
 			return (ft_free(arg), free_stack(st), pr_err(), 1);
-		if (sign == 1 && (res > INT_MAX / 10 || (res == INT_MAX / 10 && str[i] - 48 > INT_MAX % 10)))
-			return (ft_free(arg), free_stack(st), pr_err(), 1);
-		if (sign == -1 && (res > -(INT_MIN / 10) || (res == -(INT_MIN / 10) && str[i] - 48 > -(INT_MIN % 10))))
+		if (check_overflow(res, sign, str[i]))
 			return (ft_free(arg), free_stack(st), pr_err(), 1);
 		res = res * 10 + str[i] - 48;
 		i++;
@@ -88,16 +86,6 @@ int	validat_inp(char **str)
 		}
 	}
 	return (0);
-}
-
-int split_size(char **s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 t_stack	*validat_arg(int ac, char **av)

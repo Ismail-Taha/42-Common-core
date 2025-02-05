@@ -23,7 +23,7 @@ $(PROG): $(OBJS)
 $(PROG_B): $(OBJS_B) 
 	make -C Libft && make -C Libft clean
 	$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
-+
+
 clean:
 	rm -f $(OBJS) $(OBJS_B)
 

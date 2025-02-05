@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:57:48 by isallali          #+#    #+#             */
-/*   Updated: 2025/01/31 15:43:17 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:35:53 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,24 @@ void	pr_err(void)
 int	cmp_value(int a, int b)
 {
 	return (a == b);
+}
+
+int	split_size(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	check_overflow(long res, int sign, char digit)
+{
+	if (sign == 1)
+		return (res > INT_MAX / 10 || (res == INT_MAX / 10 && digit
+				- 48 > INT_MAX % 10));
+	else
+		return (res > -(INT_MIN / 10) || (res == -(INT_MIN / 10) && digit
+				- 48 > -(INT_MIN % 10)));
 }
