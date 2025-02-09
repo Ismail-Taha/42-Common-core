@@ -60,6 +60,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *str);
+int		count_word(char const *s, char c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_isprint(int c);
@@ -67,6 +68,8 @@ int		ft_isascii(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
+int		ft_is_space(char c);
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif

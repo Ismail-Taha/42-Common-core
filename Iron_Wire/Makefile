@@ -8,7 +8,7 @@ MLX = $(MLX_DIR)/libmlx.a
 CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(MLX_DIR)
 LIBS = $(LIBFT) $(MLX) -lXext -lX11 -lm
 
-SRCS = 
+SRCS = parsing.c parsing_utils.c main.c mlx_op.c points/operations.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(MLX) $(NAME)
