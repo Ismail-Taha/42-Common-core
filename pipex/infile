@@ -1,0 +1,15 @@
+freepip.c
+freepip.o
+get_next_line.c
+get_next_line_utils_bonus.c
+infile
+libft
+Makefile
+pipex
+pipex_bonus.c
+pipex.c
+pipex.h
+pipex.o
+utils_bonus.c
+utils.c
+utils.o

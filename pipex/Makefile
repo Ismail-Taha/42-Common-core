@@ -20,11 +20,11 @@ all: $(PROG)
 bonus: $(PROG_B)
 
 $(PROG): $(OBJS) 
-	@make -C libft && make && make clean
+	@make -C libft && make -C libft clean
 	@$(CC) $(CFLAGS) $(OBJS)  $(LIBFT_A) -o $(PROG)
 
 $(PROG_B): $(OBJS_B) 
-	@make -C libft && make && make clean
+	@make -C libft && make -C libft clean
 	@$(CC) $(CFLAGS) $(OBJS_B) $(LIBFT_A) -o $(PROG_B)
 
 clean:
