@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:36:59 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/09 21:42:37 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:59:00 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdio.h>
 # include "Libft/libft.h"
 
-#define W_WIDTH 1000
-#define W_HEIGHT 1000
+#define W_WIDTH 1600
+#define W_HEIGHT 1600
 
 typedef struct s_boundries
 {
@@ -33,19 +33,16 @@ typedef struct s_boundries
     int     max_x;
     int     min_y;
     int     max_y;
+    int     min_z;
+    int     max_z;
     int     width;
     int     height;
 } t_boundries;
 
-
-
 typedef struct s_point {
-    int     d_x;
-    int     d_y;
-    int     d_z;
-    int     x;
-    int     y;
-    int     z;
+    float     x;
+    float     y;
+    float     z;
     int     color;
 } t_point;
 
@@ -66,18 +63,18 @@ typedef struct s_map {
     float   rotation_x;
     float   rotation_y;
     float   rotation_z;
-    int     z_min;
-    int     z_max;
     int     offset_x;
     int     offset_y;
     int     projection_type;
     t_point **points;
+    t_boundries *boundries;
     char    *file;
+    int     *row_widths;
 } t_map;
 
 t_map   *init_map(char *filename);
 void    parse_map(t_map *map);
-int     parse_point(char *str, t_point *point, t_map *map);
+int     parse_point(char *str, t_point *point);
 void    free_map(t_map *map);
 void    pr_error(t_map *map, const char *message);
 void    free_split(char **split);
@@ -93,13 +90,13 @@ void    f_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 //----------------operations.c----------------
 void    translate(t_map *map, int x, int y);
-void    scale(t_map *map, float factor);
+void    scale(t_map *map);
 void    rotate_z(t_map *map, float angle);
 void    rotate_y(t_map *map, float angle);
 void    rotate_x(t_map *map, float angle);
 void    iso_projection(t_map *map);
-void put_map_center(t_map *map);
-t_boundries *get_boundires(t_map *map);
-float   calcul_scale(t_boundries *boundries);
+void    put_map_center(t_map *map);
+void    get_boundires(t_map *map);
+void    apply_height_factor(t_map *map);
 
 #endif /*IRON_WIRE_H*/

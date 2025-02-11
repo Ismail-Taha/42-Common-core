@@ -24,5 +24,6 @@ int main(int ac, char **av)
     map = init_map(av[1]);
     parse_map(map);
     mlx_draw(map);
+    free_map(map); // Ensure map is freed
     return (0);
 }

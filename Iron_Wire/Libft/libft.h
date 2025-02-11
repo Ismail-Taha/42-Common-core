@@ -71,7 +71,7 @@ int		ft_isalpha(int c);
 int		ft_is_space(char c);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1024
 # endif
 
 int		f_strchr(char *s, char c);

@@ -32,7 +32,7 @@ char	*next_line(char *buffer)
 	if (!buffer[i])
 		return (free(buffer), NULL);
 	i++;
-	fbuffer = f_calloc(f_strlen(buffer) - i, 1);
+	fbuffer = f_calloc(f_strlen(buffer) - i + 1, 1);
 	if (!fbuffer)
 		return (free(buffer), NULL);
 	while (buffer[i])
