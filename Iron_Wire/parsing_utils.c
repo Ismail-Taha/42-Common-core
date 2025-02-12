@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 14:57:46 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/11 13:57:06 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:39:09 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,6 @@ int parse_point(char *str, t_point *point)
     return (1);
 }
 
-void    free_map(t_map *map)
-{
-    int i;
-
-    if (!map)
-        return ;
-    if (map->points)
-    {
-        i = -1;
-        while (++i < map->height)
-            free(map->points[i]);
-        free(map->points);
-    }
-    free(map->row_widths);
-    free(map);
-}
 
 void    pr_error(t_map *map, const char *message)
 {

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:44:31 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/11 17:08:28 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:33:36 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ t_map   *init_map(char *file)
     map = (t_map *)ft_calloc(1, sizeof(t_map));
     if (!map)
         pr_error(NULL, "Memory allocation failed");
-    map->zoom = 1.0;
-    map->rotation_x = 0.0;
-    map->rotation_y = 0.0;
-    map->rotation_z = 0.0;
-    map->projection_type = 0;
     map->file = file;
     return (map);
 }
@@ -43,7 +38,7 @@ static void get_map_dimensions(t_map *map)
     while ((line = get_next_line(fd)))
     {
         map->height++;
-        free(line); // Ensure line is freed
+        free(line);
     }
     close(fd);
 
@@ -64,7 +59,7 @@ static void get_map_dimensions(t_map *map)
         pr_error(map, "Cannot open file");
 
     i = 0;
-    while (i < map->height && (line = get_next_line(fd)))
+    while (i <= map->height && (line = get_next_line(fd)))
     {
         map->row_widths[i] = count_word(line, 32);
         map->points[i] = (t_point *)malloc(sizeof(t_point) * map->row_widths[i]);
@@ -81,7 +76,7 @@ static void get_map_dimensions(t_map *map)
         pr_error(map, "Empty or invalid map");
 }
 
-void    parse_map(t_map *map)
+void    parse_map(t_mlx *mlx)
 {
     int     fd;
     char    *line;
@@ -89,31 +84,31 @@ void    parse_map(t_map *map)
     int     i;
     int     j;
 
-    get_map_dimensions(map);
-    fd = open(map->file, O_RDONLY);
+    get_map_dimensions(mlx->map);
+    fd = open(mlx->map->file, O_RDONLY);
     if (fd < 0)
-        pr_error(map, "Cannot open file");
+        pr_error(mlx->map, "Cannot open file");
 
     i = 0;
-    while (i < map->height && (line = get_next_line(fd)))
+    while (i < mlx->map->height && (line = get_next_line(fd)))
     {
         split = ft_split(line, 32);
-        if (!split)
+        if (!split || !*split || **split == '\n')
         {
             free(line);
-            pr_error(map, "Split failed");
+            pr_error(mlx->map, "Split failed");
         }
         j = -1;
-        while (split[++j] && j < map->width)
+        while (split[++j] && j < mlx->map->width)
         {
-            if (!parse_point(split[j], &map->points[i][j]))
+            if (!parse_point(split[j], &mlx->map->points[i][j]))
             {
                 free_split(split);
                 free(line);
-                pr_error(map, "Invalid point format");
+                pr_error(mlx->map, "Invalid point format");
             }
-            map->points[i][j].x = j;
-            map->points[i][j].y = i;
+            mlx->map->points[i][j].x = j;
+            mlx->map->points[i][j].y = i;
         }
         free_split(split);
         free(line);

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:36:59 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/11 15:59:00 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:27:54 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdio.h>
 # include "Libft/libft.h"
 
+# define KEY_ESC 65307
 #define W_WIDTH 1600
 #define W_HEIGHT 1600
 
@@ -46,6 +47,17 @@ typedef struct s_point {
     int     color;
 } t_point;
 
+typedef struct s_map {
+    int     width;
+    int     height;
+    int     offset_x;
+    int     offset_y;
+    int     *row_widths;
+    char    *file;
+    t_point **points;
+    t_boundries *boundries;
+} t_map;
+
 typedef struct s_mlx {
     void    *mlx;
     void    *win;
@@ -54,26 +66,12 @@ typedef struct s_mlx {
     int     bits_per_pixel;
     int     line_length;
     int     endian;
+    t_map   *map;
 } t_mlx;
 
-typedef struct s_map {
-    int     width;
-    int     height;
-    float   zoom;
-    float   rotation_x;
-    float   rotation_y;
-    float   rotation_z;
-    int     offset_x;
-    int     offset_y;
-    int     projection_type;
-    t_point **points;
-    t_boundries *boundries;
-    char    *file;
-    int     *row_widths;
-} t_map;
 
 t_map   *init_map(char *filename);
-void    parse_map(t_map *map);
+void    parse_map(t_mlx *mlx);
 int     parse_point(char *str, t_point *point);
 void    free_map(t_map *map);
 void    pr_error(t_map *map, const char *message);
@@ -83,9 +81,9 @@ void    validat_file(char *file);
 
 //------------mlx_op.c----------------
 void    mlx_draw_line(t_mlx *mlx, t_point *p1, t_point *p2);
+void	mlx_hooks(t_mlx *mlx);
 void    mlx_draw_map(t_mlx *mlx, t_map *map);
-void    mlx_draw(t_map *map);
-void    f_mlx_clear_window(t_mlx *mlx);
+void    mlx_draw(t_mlx *mlx);
 void    f_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 //----------------operations.c----------------

@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:52:41 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/11 16:24:18 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:08:19 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ float height_factor(t_map *map)
     float factor;
 
     factor  = map->boundries->max_z - map->boundries->min_z;
+printf("factor: %f\n", factor);
     if (factor == 0)
         return (1.0);
     else if (factor > map->width)
@@ -89,6 +90,7 @@ void apply_height_factor(t_map *map)
         while (++j < map->width)
             map->points[i][j].z *= factor;
     }
+printf("factor: %f\n", factor);
 }
 
 void    rotate_z(t_map *map, float angle)

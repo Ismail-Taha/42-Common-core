@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:17:04 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/11 16:25:18 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:39:42 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,10 @@ void    f_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
     *(unsigned int *)dst = color;
 }
 
-int	interpolate_color(int color1, int color2, float fraction)
-{
-	int	red;
-	int	green;
-	int	blue;
-
-	red = ((1 - fraction) * ((color1 >> 16) & 0xFF)) + (fraction
-			* ((color2 >> 16) & 0xFF));
-	green = ((1 - fraction) * ((color1 >> 8) & 0xFF)) + (fraction
-			* ((color2 >> 8) & 0xFF));
-	blue = ((1 - fraction) * (color1 & 0xFF)) + (fraction * (color2 & 0xFF));
-	return ((red << 16) | (green << 8) | blue);
-}
-
 void    mlx_draw_line(t_mlx *mlx, t_point *p1, t_point *p2)
 {
-    int dx;
-    int dy;
-    int steps;
-    int i;
-    float x_inc;
-    float y_inc;
-    float x;
-    float y;
-    float percentage;
-    int color;
+    int (dx), (dy), (steps), (i);
+    float (x_inc), (y_inc), (x), (y);
 
     if (!p1 || !p2)
         return ;
@@ -64,8 +42,6 @@ void    mlx_draw_line(t_mlx *mlx, t_point *p1, t_point *p2)
     i = 0;
     while (i <= steps)
     {
-        percentage = (float)i / steps;
-        color = interpolate_color(p1->color, p2->color, percentage);
         f_mlx_pixel_put(mlx, x, y, p1->color);
         x += x_inc;
         y += y_inc;
@@ -77,9 +53,7 @@ void mlx_draw_map(t_mlx *mlx, t_map *map)
 {
     int i;
     int j;
-    
 
-    // 3ard
     i = -1;
     while (++i < map->height)
     {
@@ -100,29 +74,26 @@ void mlx_draw_map(t_mlx *mlx, t_map *map)
     }
 }
 
-void    mlx_draw(t_map *map)
+void    mlx_draw(t_mlx *mlx)
 {
-    t_mlx   mlx;
-
-    mlx.mlx = mlx_init();
-    mlx.win = mlx_new_window(mlx.mlx, W_WIDTH, W_HEIGHT, "Iron_wire");
-    mlx.img = mlx_new_image(mlx.mlx, W_WIDTH, W_HEIGHT);
-    mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length, &mlx.endian);
-    get_boundires(map);
-    apply_height_factor(map);
-    scale(map);
-    iso_projection(map);
-    put_map_center(map);
-    mlx_draw_map(&mlx, map);
-    mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
-    free(map->boundries);
-    map->boundries = NULL;
-    mlx_loop(mlx.mlx);
+    mlx->mlx = mlx_init();
+    mlx->win = mlx_new_window(mlx->mlx, W_WIDTH, W_HEIGHT, "Iron_wire");
+    mlx->img = mlx_new_image(mlx->mlx, W_WIDTH, W_HEIGHT);
+    mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel, &mlx->line_length, &mlx->endian);
+    get_boundires(mlx->map);
+    apply_height_factor(mlx->map);
+    scale(mlx->map);
+    iso_projection(mlx->map);
+    put_map_center(mlx->map);
+    mlx_draw_map(mlx, mlx->map);
+    mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+    mlx_hooks(mlx);
+    mlx_loop(mlx->mlx);
 }
-void boundries_help(t_map *map, t_boundries *bn)
+void boundries_help(t_map *map, t_boundries *bn, int i)
 {
     int j;
-    int i = 0;
+
     j = 0;
         while (j < map->width)
         {
@@ -162,9 +133,11 @@ void get_boundires(t_map *map)
     i = 0;
     while (i < map->height)
     {
-        boundries_help(map, boundries);
+        boundries_help(map, boundries, i);
         i++;
     }
+    printf("min_z: %d\n", boundries->min_z);
+    printf("max_z: %d\n", boundries->max_z);
     boundries->width = boundries->max_x - boundries->min_x;
     boundries->height = boundries->max_y - boundries->min_y;
     map->boundries = boundries;
