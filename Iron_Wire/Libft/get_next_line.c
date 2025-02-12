@@ -6,7 +6,7 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:22:03 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/12 14:58:27 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:42:33 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*next_line(char *buffer)
 	if (!buffer[i])
 		return (free(buffer), NULL);
 	i++;
+	if (!buffer[i])
+        return (free(buffer), NULL);
 	fbuffer = f_calloc(f_strlen(buffer) - i + 1, 1);
 	if (!fbuffer)
 		return (free(buffer), NULL);
