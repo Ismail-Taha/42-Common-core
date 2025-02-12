@@ -6,17 +6,11 @@
 /*   By: isallali <isallali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:06:08 by isallali          #+#    #+#             */
-/*   Updated: 2025/02/12 20:39:55 by isallali         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:06:33 by isallali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Iron_wire.h"
-
-int	close_window(t_mlx *mlx)
-{
-	cleanup_all(mlx);
-	exit(0);
-}
 
 int	close_window_x(t_mlx *mlx)
 {
